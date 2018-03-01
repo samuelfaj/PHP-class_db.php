@@ -28,72 +28,72 @@ require_once('/includes/class_db.php');
 ## Examples
 
 Initializing
-```
+```php
 <?php
-	include ('class_db.php');
+    include ('class_db.php');
 
-	$db = new db(array(
-		'host'     => 'localhost'      ,  // string - Host of Connection.
-		'user'     => 'username'       ,  // string - Database's User.
-		'password' => 'mysecretpass'   ,  // string - User's Password.
-		'database' => 'myapplication'  ,  // string - Default Database name.
-		'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
-	));
+    $db = new db(array(
+        'host'     => 'localhost'      ,  // string - Host of Connection.
+        'user'     => 'username'       ,  // string - Database's User.
+        'password' => 'mysecretpass'   ,  // string - User's Password.
+        'database' => 'myapplication'  ,  // string - Default Database name.
+        'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
+    ));
 
-	$sql = new query($db);
+    $sql = new query($db);
 ```
 
 Doing a simple query passing it as text:
-```
+```php
 <?php
-	include ('class_db.php');
+    include ('class_db.php');
 
-	$db = new db(array(
-		'host'     => 'localhost'      ,  // string - Host of Connection.
-		'user'     => 'username'       ,  // string - Database's User.
-		'password' => 'mysecretpass'   ,  // string - User's Password.
-		'database' => 'myapplication'  ,  // string - Default Database name.
-		'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
-	));
+    $db = new db(array(
+        'host'     => 'localhost'      ,  // string - Host of Connection.
+        'user'     => 'username'       ,  // string - Database's User.
+        'password' => 'mysecretpass'   ,  // string - User's Password.
+        'database' => 'myapplication'  ,  // string - Default Database name.
+        'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
+    ));
 
-	$sql = new query($db);
-	$sql->exec("SELECT * FROM users");
-	var_dump($sql->query);
+    $sql = new query($db);
+    $sql->exec("SELECT * FROM users");
+    var_dump($sql->query);
 ```
 
 Doing a select without write one single character of SQL:
-```
+```php
 <?php
-	include ('class_db.php');
+    include ('class_db.php');
 
-	$sql = new query(array(
-		'host'     => 'localhost'      ,  // string - Host of Connection.
-		'user'     => 'username'       ,  // string - Database's User.
-		'password' => 'mysecretpass'   ,  // string - User's Password.
-		'database' => 'myapplication'  ,  // string - Default Database name.
-		'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
-	));
+    $sql = new query(array(
+        'host'     => 'localhost'      ,  // string - Host of Connection.
+        'user'     => 'username'       ,  // string - Database's User.
+        'password' => 'mysecretpass'   ,  // string - User's Password.
+        'database' => 'myapplication'  ,  // string - Default Database name.
+        'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
+    ));
 
-	$sql->table('users');
-	$sql->limit(array(0,10));
+    $sql->table('users');
+    $sql->limit(array(0,10));
 	
-	var_dump($sql->select());
+    var_dump($sql->select());
 ```
 
 Selecting and updating a user without write one single character of SQL:
-```
-	$sql = new query($db);
-	$sql->table('users');
-	$sql->where(
-		array('id'    , $_POST['id']),
-		array('email' , $_POST['email'])
-	);
-	$sql->order('id','DESC');
-	$sql->limit(1);
+```php
+    $sql = new query($db);
+    $sql->table('users');
+    $sql->where(
+        array('id'    , $_POST['id']),
+        array('email' , $_POST['email'])
+    );
+    $sql->order('id','DESC');
+    $sql->limit(1);
 
-	if( $sql->select()->have_rows ){ 
-		$sql->update(array('active' => 0)); 
-	}
+    if( $sql->select()->have_rows ){ 
+        $sql->update(array('active' => 0)); 
+    }
 ```
 
 ## License

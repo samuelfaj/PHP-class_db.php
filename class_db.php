@@ -309,7 +309,7 @@ class query extends db{
 	 *  -> 'elapsed_time'   #  int 	    -  Elapsed time between start and finish of query.
 	 */
 	public function exec($sql='', $result_comparison_signal = '>', $fetch_all_rows = true){
-		if(empty($sql)) $sql = $this->sql;
+		if(empty($sql)){ $sql = $this->sql; } else { $this->sql = $sql; }
 		if(empty($sql)) return false;
 
 		$this->info['start_date'] = date('Y-m-d H:i:s');
@@ -379,7 +379,7 @@ class query extends db{
 	
 	/**
 	 * Executes a new INSERT query.
-	 * @param string $insert (optional) fields to get.
+	 * @param string $insert Fields and values to insert.
 	 *  -> Example: array('id' => 1,'register_date' => date('Y-m-d H:i:s'))
 	 * @param boolean $addslashes If true it'll quote strings with slashes on $insert values.
 	 * @param boolean $literal If false it'll add, IN THE QUERY, quotes before and after the values.
@@ -407,7 +407,7 @@ class query extends db{
 
 	/**
 	 * Executes a new UPDATE query.
-	 * @param string $insert (optional) fields to get.
+	 * @param string $update Fields and values to update.
 	 *  -> Example: array('name' => 'Samuel Faj','register_date' => date('Y-m-d H:i:s'))
 	 * @param string $safemode If true it will not execute the query if there aren't where conditions.
 	 * @param boolean $addslashes If true it'll quote strings with slashes on $insert values.
@@ -640,7 +640,7 @@ class query extends db{
 				if(is_resource($this->obj_query)) $rows_number = mysql_num_rows($this->obj_query);
 			break;
 			case 'mysqli':
-				$rows_number = $this->obj_db_connection->num_rows();
+				if(is_object($this->obj_query)) $rows_number = $this->obj_query->num_rows;
 			break;
 			case 'mssql':
 				if(is_resource($this->obj_query)) $rows_number = mssql_num_rows($this->obj_query);

@@ -9,5 +9,6 @@
             "email": "samuelfaj@icloud.com"
         }
     ],
+    "minimum-stability": "stable",
     "require": {}
 }

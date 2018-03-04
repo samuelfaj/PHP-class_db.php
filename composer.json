@@ -1,0 +1,13 @@
+{
+    "name": "samuelfaj/class_db",
+    "description": "Class_DB allows you to write secure SQL querys easily and work with many different databases using the same syntax.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Faj",
+            "email": "samuelfaj@icloud.com"
+        }
+    ],
+    "require": {}
+}

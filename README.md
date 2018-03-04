@@ -18,10 +18,15 @@ Thinking about it i developed class_db. It helps us to write less SQL and don't 
 Just write your code and class_db will do the rest. If the driver or the team resolves to change, just update it!
 
 ### Install
+Use composer
 
-It's simple, just download and require it.
-
+```php
+composer require samuelfaj/class_db
 ```
+
+Or just download and require it.
+
+```php
 require_once('/includes/class_db.php');
 ```
 

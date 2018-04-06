@@ -10,7 +10,7 @@
 ![pgsql Ready](https://img.shields.io/badge/pgsql-ready-green.svg)
 
 *Write less. Do a lot more.*
-**Class_DB allows you to write secure SQL querys easily and work with many different databases using the same syntax**
+**Class_DB allows you to write secure SQL queris easily and work with many different databases using the same syntax**
 
 Everytime i was working with or starting a new system, i had to look at the database documentation and choose between create a class for it using mine functions or write the system following his own. But what if the driver changed? Yeah, Everyone who is here for a while saw some changes in PHP drivers. Those changes were a painful work for great systems and even more for small teams. We saw mssql become sqlserv, mysql become mysqli and it's common to see groups deciding to change the database in the middle of the project.
 
@@ -21,8 +21,8 @@ Just write your code and class_db will do the rest. If the driver or the team re
 
 It's simple, just download and require it.
 
-```
-require_once('/includes/class_db.php');
+```sh
+composer require samuelfaj/class_db
 ```
 
 ## Examples
@@ -30,9 +30,9 @@ require_once('/includes/class_db.php');
 Initializing
 ```php
 <?php
-    include ('class_db.php');
+    require_once 'vendor/autoload.php';
 
-    $db = new db(array(
+    $db = new ClassDb\Db(array(
         'host'     => 'localhost'      ,  // string - Host of Connection.
         'user'     => 'username'       ,  // string - Database's User.
         'password' => 'mysecretpass'   ,  // string - User's Password.
@@ -40,15 +40,15 @@ Initializing
         'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
     ));
 
-    $sql = new query($db);
+    $sql = new ClassDb\Query($db);
 ```
 
 Doing a simple query passing it as text:
 ```php
 <?php
-    include ('class_db.php');
+    require_once 'vendor/autoload.php';
 
-    $db = new db(array(
+    $db = new ClassDb\Db(array(
         'host'     => 'localhost'      ,  // string - Host of Connection.
         'user'     => 'username'       ,  // string - Database's User.
         'password' => 'mysecretpass'   ,  // string - User's Password.
@@ -56,7 +56,7 @@ Doing a simple query passing it as text:
         'db_type'  => 'mysql'          ,  // string - Type of Database. (It can be: 'mysql', 'mysqli' , 'mssql' , 'sqlserv' , 'pgsql').
     ));
 
-    $sql = new query($db);
+    $sql = new ClassDb\Query($db);
     $sql->exec("SELECT * FROM users");
     var_dump($sql->query);
 ```
@@ -64,9 +64,9 @@ Doing a simple query passing it as text:
 Doing a select without write one single character of SQL:
 ```php
 <?php
-    include ('class_db.php');
+    require_once 'vendor/autoload.php';
 
-    $sql = new query(array(
+    $sql = new ClassDb\Query(array(
         'host'     => 'localhost'      ,  // string - Host of Connection.
         'user'     => 'username'       ,  // string - Database's User.
         'password' => 'mysecretpass'   ,  // string - User's Password.
@@ -82,7 +82,10 @@ Doing a select without write one single character of SQL:
 
 Selecting and updating a user without write one single character of SQL:
 ```php
-    $sql = new query($db);
+<?php
+    require_once 'vendor/autoload.php';
+
+    $sql = new ClassDb\Query($db);
     $sql->table('users');
     $sql->where(
         array('id'    , $_POST['id']),
